@@ -27,13 +27,13 @@
                 "absen": `
                       <td >
                         <div class="align-middle text-center" id"buton"">
-                          <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalDetail">
+                          <button id="btnDetail" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetail" onclick="getDetail('`+e.id+`')">
                             <i class="fa-solid fa-circle-info"></i>
                           </button>
-                          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalEdit">
+                          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalEdit" onclick="editFunct('`+e.id+`')">
                             <i class="fa-solid fa-pen-to-square"></i>
                           </button>
-                          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus">
+                          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus" onclick="delFunct('`+e.id+`')">
                             <i class="fa-solid fa-trash-can"></i>
                           </button>
                         </div>
@@ -67,12 +67,166 @@
     }
 
     // Simpan Data
-    function saveData(){
+    async function saveData(){
 
-        // name
-        // usernameAdd
-        // emailAdd
-        // PassworAdd
-        // PasswordConfirm  
-        console.log("testing save data");
+        var name = $('#name');
+        var usernameAdd = $('#usernameAdd');
+        var emailAdd = $('#emailAdd');
+        var passwordAdd = $('#passwordAdd');
+        var passwordConfirm = $('#passwordConfirm');
+
+        var lengPass = passwordAdd.val().length;
+        var lengPassConf = passwordConfirm.val().length;
+
+        console.log(lengPassConf);
+
+        if(lengPass && lengPassConf < 8){
+          alert('Password Minimal 8 Karakter 0-9/a-z')
+        }else{
+
+          if(passwordAdd.val() == passwordConfirm.val()){
+            console.log("Password Sama");
+  
+            passwordAdd.removeClass('border border-danger text-danger');
+            passwordConfirm.removeClass('border border-danger text-danger');
+  
+            $('.notMatch').addClass('d-none');
+  
+            // Create Data
+            const data = {
+                "username": usernameAdd.val(),
+                "email": emailAdd.val(),
+                "emailVisibility": true,
+                "password": passwordAdd.val(),
+                "passwordConfirm": passwordConfirm.val(),
+                "name": name.val(),
+                "uuid": 0
+            };
+  
+            const record = await pb.collection('users').create(data);
+  
+            console.log(record);
+  
+            if(record){
+              alert('Data Berhasil tersimpan');
+  
+              $('#name').val('');
+              $('#usernameAdd').val('');
+              $('#emailAdd').val('');
+              $('#passwordAdd').val('');
+              $('#passwordConfirm').val('');
+              
+              window.location.reload();
+  
+            }else{
+              alert('Data Gagal Tersimpan');
+              $('#name').focus();
+            }
+  
+          // Create Data
+  
+          }else{
+  
+            passwordAdd.addClass('border border-danger text-danger');
+            passwordConfirm.addClass('border border-danger text-danger');
+  
+            $('.notMatch').removeClass('d-none');
+  
+            console.log("Password Tidak Sama");
+          }
+
+        }
     }
+
+    function addCard(){
+      $('#uuid').toggleClass('d-none');
+    }
+
+    async function getDetail($id){
+      console.log($id);
+      const record = await pb.collection('users').getOne($id, {});
+      
+      if(record){
+        console.log(record);
+        $('#det_idKar').val(record.uuid);
+        $('#det_name').val(record.name);
+        $('#det_divisi').val(record.divisi);
+        $('#det_jabatan').val(record.jabatan);
+        $('#det_tglmasuk').val(record.tanggal_masuk);
+      }else{
+        console.log('Data Tidak Ditemukan');
+      }
+
+    }
+
+    function delFunct($id){
+
+      $('#modalHapus').modal('show');
+
+      $('#btnHapus').click( async () => {
+        console.log("Button Hapus di click");
+        const record = await pb.collection('users').delete($id);
+
+        if(record){
+          alert('Data Berhasil Terhapus');
+          window.location.reload();
+        }else{
+          window.location.reload();
+        }
+
+      });
+    }
+
+    // Edit Function
+
+    async function editFunct($id){
+      const record = await pb.collection('users').getOne($id, {});
+      
+      if(record){
+        console.log(record);
+        $('#edt_kar').val(record.uuid);
+        $('#edt_name').val(record.name);
+        $('#edt_username').val(record.username);
+        $('#edt_email').val(record.email);
+        $('#edt_divisi').val(record.divisi);
+        $('#edt_jabatan').val(record.jabatan);
+        $('#edt_tglmasuk').val(record.tanggal_masuk);
+      }else{
+        alert('Data Tidak Ditemukan');
+      }
+
+      // button update
+
+      $('#btnUpdate').click( async () => {
+        var username = $('#edt_username').val();
+        var name = $('#edt_name').val();
+        var uuid = $('#edt_kar').val();
+        var divisi = $('#edt_divisi').val();
+        var jabatan = $('#edt_jabatan').val();
+        var tgl_masuk = $('#edt_tglmasuk').val();
+
+        const data = {
+            "username": username,
+            "emailVisibility": true,
+            "name": name,
+            "uuid": uuid,
+            "divisi": divisi,
+            "jabatan": jabatan,
+            "tanggal_masuk": tgl_masuk
+        };
+        
+        const response = await pb.collection('users').update($id, data);
+      
+        if(response){
+          alert('Data Berhasil Terupdate');
+          window.location.reload();
+        }else{
+          alert('Data Gagal Terupdate');
+          $('#edt_kar').focus();
+        }
+      });
+      // button update
+      
+    }
+
+    // Edit Function

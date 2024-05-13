@@ -230,45 +230,33 @@
                   <div class="col w-100">
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Id Karyawan</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Id Karyawan" value="ADM-0293847">
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" id="edt_kar">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Nama Lengkap</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Nama Lengkap" value="Rizkan Ramdani">
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Nama Lengkap" id="edt_name">
+                      </div>
+                      <div class="d-flex g-3 align-items-center">
+                          <span class="col-form-label w-30" style="font-size: 13px;">Username</span>
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Nama Lengkap" id="edt_username">
+                      </div>
+                      <div class="d-flex g-3 align-items-center">
+                          <span class="col-form-label w-30" style="font-size: 13px;">Email</span>
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Nama Lengkap" id="edt_email">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Divisi</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Divisi" value="Administrator">
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Divisi" id="edt_divisi">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Jabatan</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Jabatan" value="Administrator">
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Jabatan" id="edt_jabatan">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Tanggal Masuk</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Tanggal Masuk" value="12-02-2020">
+                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Tanggal Masuk" id="edt_tglmasuk">
                       </div>
-                      <div class="d-flex g-3 align-items-center">
-                        <h6>Absensi</h6>
-                      </div>
-                      <div class="d-flex">
-                        <div>
-                          <span class="col-form-label w-30" style="font-size: 13px;">Masuk</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Masuk" value="12">
-                        </div>
-                        <div>
-                          <span class="col-form-label w-30" style="font-size: 13px;">Telat</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Telat" value="3">
-                        </div>
-                        <div>
-                          <span class="col-form-label w-30" style="font-size: 13px;">Izin</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Izin" value="3">
-                        </div>
-                        <div>
-                          <span class="col-form-label w-30" style="font-size: 13px;">Tidak Masuk</span>
-                          <input class="row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Tidak Masuk" value="0">
-                        </div>
-                      </div>  
+                      
                   </div>
                   <!-- Ket Absensi -->
                  
@@ -276,7 +264,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate">Update</button>
               </div>
             </div>
           </div>
@@ -306,23 +294,23 @@
                   <div class="col w-100">
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Id Karyawan</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Id Karyawan" value="ADM-0293847" readonly>
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" type="text" placeholder="Id Karyawan" readonly id="det_idKar">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Nama Lengkap</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Nama Lengkap" value="Rizkan Ramdani" readonly>
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Nama Lengkap" id="det_name">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Divisi</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Divisi" value="Administrator" readonly>
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Divisi" id="det_divisi">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Jabatan</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Jabatan" value="Administrator" readonly>
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Jabatan" id="det_jabatan">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                           <span class="col-form-label w-30" style="font-size: 13px;">Tanggal Masuk</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Tanggal Masuk" value="12-02-2020" readonly>
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Tanggal Masuk" id="det_tglMasuk">
                       </div>
                       <div class="d-flex g-3 align-items-center">
                         <h6>Absensi</h6>
@@ -330,15 +318,15 @@
                       <div class="d-flex">
                         <div>
                           <span class="col-form-label w-30" style="font-size: 13px;">Masuk</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Masuk" value="12">
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Masuk" id="det_msk">
                         </div readonly>
                         <div>
                           <span class="col-form-label w-30" style="font-size: 13px;">Telat</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Telat" value="3">
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Telat" id="det_tlt">
                         </div readonly>
                         <div>
                           <span class="col-form-label w-30" style="font-size: 13px;">Izin</span>
-                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Izin" value="3">
+                          <input class="border-0 row mb-1 form-control w-70 ms-1 form-control-sm" readonly type="text" placeholder="Izin" id="det_izn">
                         </div readonly>
                         <div>
                           <span class="col-form-label w-30" style="font-size: 13px;">Tidak Masuk</span>
@@ -375,7 +363,7 @@
                 </h5>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                  <button type="button" class="btn btn-danger">Hapus</button>
+                  <button type="button" class="btn btn-danger" id="btnHapus">Hapus</button>
                 </div>
               </div>
             </div>
@@ -422,11 +410,11 @@
         <form>
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="texet" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" name="name">
           </div>
           <div class="mb-3">
             <label for="usernameAdd" class="form-label">Username</label>
-            <input type="texet" class="form-control" id="usernameAdd">
+            <input type="text" class="form-control" id="usernameAdd">
           </div>
           <div class="mb-3">
             <label for="emailAdd" class="form-label">Email address</label>
@@ -435,10 +423,21 @@
           <div class="mb-3">
             <label for="passwordAdd" class="form-label">Password</label>
             <input type="passwordAdd" class="form-control" id="passwordAdd">
+            <label class="text-danger notMatch d-none">Password not match</label>
           </div>
           <div class="mb-3">
             <label for="passwordConfirm" class="form-label">Password Confirm</label>
             <input type="passwordConfirm" class="form-control" id="passwordConfirm">
+            <label class="text-danger notMatch d-none">Password not match</label>
+          </div>
+
+          <div id="verifCard">
+            <button type="button" class="btn btn-secondary" onclick="addCard()">Add Card</button>
+          </div>
+          
+          <div class="mb-3 d-none" id="uuid">
+            <label for="uuid" class="form-label">Id Card</label>
+            <input type="uuid" class="form-control" id="uuid" readonly>
           </div>
         </form>
       </div>
