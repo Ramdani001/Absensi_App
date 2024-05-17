@@ -79,6 +79,14 @@
             <span class="nav-link-text ms-1">Keuangan</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="rfid.html">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <span class="nav-link-text ms-1">Master RFID</span>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -408,6 +416,14 @@
       </div>
       <div class="modal-body">
         <form>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Id Card</label>
+              <div name="card_id" id="card_id">
+                <!-- Dropdown UUID (Id Card) -->
+              </div>
+          </div>
+
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name">
@@ -431,14 +447,6 @@
             <label class="text-danger notMatch d-none">Password not match</label>
           </div>
 
-          <div id="verifCard">
-            <button type="button" class="btn btn-secondary" onclick="addCard()">Add Card</button>
-          </div>
-          
-          <div class="mb-3 d-none" id="uuid">
-            <label for="uuid" class="form-label">Id Card</label>
-            <input type="uuid" class="form-control" id="uuid" readonly>
-          </div>
         </form>
       </div>
       <div class="modal-footer">

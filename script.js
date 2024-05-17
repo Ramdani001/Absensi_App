@@ -9,7 +9,7 @@
 
         get.forEach(function (e) {
 
-            var item = {
+            var item = { 
                 "name": `
                     <td>
                         <div class="d-flex px-2">
@@ -44,7 +44,7 @@
             data1.push(item);
         });
 
-      console.log(get);
+        console.log(data1);
 
         new DataTable('#tblKaryawan', {
             data: data1,
@@ -58,7 +58,36 @@
             ordering: false,
             paging: false
         });
+
+
+        // Get data dropdown UUID
+
+        var drop = await dropFunct();
+        var myParent = document.getElementById('card_id');
+        //Create and append select list
+
+        var selectList = document.createElement("select");
+        selectList.id = "mySelect";
+        myParent.appendChild(selectList);
+
+        drop.forEach(function (e){
+          var option = document.createElement("option");
+          option.value = e.uuid;
+          option.text = e.uuid;
+          selectList.appendChild(option);
+        });
+
+        // console.log(drop);
+
+        // Get data dropdown UUID
+
     });
+
+    async function dropFunct(){
+      const recordDrop = await pb.collection('uid_table').getFullList({});
+
+      return recordDrop;
+    }
 
     async function getData(){
         const resultList = await pb.collection('users').getFullList({});
