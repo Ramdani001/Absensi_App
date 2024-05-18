@@ -187,7 +187,9 @@
           <div class="top-0 position-absolute text-light p-3 py-4 align-items-center d-md-flex justify-content-between" style="width: 97.5%; height: 130px;">
               <div class="iconTop d-flex justify-content-evenly text-center" style="width: 100%;">
                   <div class="d-flex flex-column p-2">
-                      <span class="fs-2 fw-bold" >120</span>
+                      <span class="fs-2 fw-bold" id="jumKar">
+                        
+                      </span>
                       <span class="" style="color: rgba(240, 240, 240, .8);">
                           <i class="fa-solid fa-user-tie me-1"></i>
                           Employee's
@@ -269,7 +271,7 @@
 
                         </div>
                         <h5 class="my-auto">Rizkan Ramdani</h5>
-                        <button class="btn btn-danger my-auto ms-auto w-25" style="font-size: 10px; !important">Tidak Hadir</button>
+                        <button class="btn btn-danger my-auto ms-auto w-25" style="font-size: 10px !important;">Tidak Hadir</button>
                     </div>
                 </div>
                 <!-- === -->
@@ -280,7 +282,7 @@
 
                         </div>
                         <h5 class="my-auto">Ramdani</h5>
-                        <button class="btn my-auto btn-warning text-light ms-auto" style="font-size: 10px; !important">Telat</button>
+                        <button class="btn my-auto btn-warning text-light ms-auto" style="font-size: 10px important;">Telat</button>
                     </div>
                 </div>
                 <!-- === -->
@@ -322,7 +324,36 @@
   
   <script src="assets/dist/pocketbase.umd.js"></script>
 
-  
+  <!--  myscript -->
+  <script>
+    const pb = new PocketBase('http://127.0.0.1:8090');
+    $( document ).ready(async function() {
+      var get = await getData();
+
+      // Count Karyawan
+      var jumData = [];
+        var jml = 0;
+        get.forEach(function (e) {
+          if(e.level != 1){
+            jumData.push(e.uuid);
+            jml+=1;
+          }
+        });
+
+        $('#jumKar').text(jml);
+        console.log(jml);
+
+        // Count Karyawan
+
+    });
+
+    async function getData(){
+        const resultList = await pb.collection('users').getFullList({});
+
+        return resultList;
+    }
+
+  </script>
 
 
 </body>

@@ -43,9 +43,7 @@
 
             data1.push(item);
         });
-
-        console.log(data1);
-
+ 
         new DataTable('#tblKaryawan', {
             data: data1,
             columns: [
@@ -58,7 +56,6 @@
             ordering: false,
             paging: false
         });
-
 
         // Get data dropdown UUID
 
