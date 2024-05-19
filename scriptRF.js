@@ -6,10 +6,9 @@ $( document ).ready(async function() {
     var data1 = [];
 
     get.forEach(function (e,i) {
-
         var item = { 
             "no": i+1,
-            "uuid": e.uuid,
+            "uid": e.uid,
             "fungsi": `
                   <td >
                     <div class="align-middle text-center" id"buton"">
@@ -33,8 +32,8 @@ $( document ).ready(async function() {
         data: data1,
         columns: [
             { data: 'no'},
-            { data: 'uuid'},
-            { data: 'fungsi'}
+            { data: 'uid'},
+            { data: 'fungsi'} 
         ],
         info: false,
         ordering: false,
@@ -44,7 +43,7 @@ $( document ).ready(async function() {
 });
 
 async function getData(){
-    const resultList = await pb.collection('uid_table').getFullList({});
+    const resultList = await pb.collection('master_card').getFullList({});
 
     return resultList;
 }
@@ -53,10 +52,9 @@ async function saveData(){
 
     var uuid = $('#uuid').val();
     const data = {
-        "field": '',
-        "uuid": uuid
+        "uid": uuid
     };
-    const record = await pb.collection('uid_table').create(data);
+    const record = await pb.collection('master_card').create(data);
 
         if(record){
           alert('Data Berhasil tersimpan');
@@ -78,7 +76,7 @@ function delFunct($id){
 
     $('#btnHapus').click( async () => {
       console.log("Button Hapus di click");
-      const record = await pb.collection('uid_table').delete($id);
+      const record = await pb.collection('master_card').delete($id);
 
       if(record){
         alert('Data Berhasil Terhapus');
@@ -93,11 +91,11 @@ function delFunct($id){
   // Edit Function
 
   async function editFunct($id){
-    const record = await pb.collection('uid_table').getOne($id, {});
+    const record = await pb.collection('master_card').getOne($id, {});
     
     if(record){
       console.log(record);
-      $('#uuid_edit').val(record.uuid);
+      $('#uuid_edit').val(record.uid);
     }else{
       alert('Data Tidak Ditemukan');
     }
@@ -107,10 +105,9 @@ function delFunct($id){
     $('#btnUpdate').click( async () => {
       var uuid = $('#uuid_edit').val();
       const data = {
-        "field": '',
-        "uuid": uuid
+        "uid": uuid
     };
-      const response = await pb.collection('uid_table').update($id, data);
+      const response = await pb.collection('master_card').update($id, data);
     
       if(response){
         alert('Data Berhasil Terupdate');

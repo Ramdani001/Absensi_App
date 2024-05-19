@@ -58,19 +58,20 @@
         });
 
         // Get data dropdown UUID
-
+ 
         var drop = await dropFunct();
         var myParent = document.getElementById('card_id');
         //Create and append select list
-
         var selectList = document.createElement("select");
-        selectList.id = "mySelect";
+        selectList.id = "uid_card";
+        selectList.name = "uid_card";
         myParent.appendChild(selectList);
 
         drop.forEach(function (e){
+          // console.log(e.uid); 
           var option = document.createElement("option");
-          option.value = e.uuid;
-          option.text = e.uuid;
+          option.value = e.uid;
+          option.text = e.uid;
           selectList.appendChild(option);
         });
 
@@ -81,7 +82,7 @@
     });
 
     async function dropFunct(){
-      const recordDrop = await pb.collection('uid_table').getFullList({});
+      const recordDrop = await pb.collection('master_card').getFullList({});
 
       return recordDrop;
     }
@@ -100,6 +101,8 @@
         var emailAdd = $('#emailAdd');
         var passwordAdd = $('#passwordAdd');
         var passwordConfirm = $('#passwordConfirm');
+        var uid_card = $('#uid_card');
+        console.log(uid_card);
 
         var lengPass = passwordAdd.val().length;
         var lengPassConf = passwordConfirm.val().length;
@@ -120,18 +123,19 @@
   
             // Create Data
             const data = {
-                "username": usernameAdd.val(),
-                "email": emailAdd.val(),
-                "emailVisibility": true,
-                "password": passwordAdd.val(),
-                "passwordConfirm": passwordConfirm.val(),
-                "name": name.val(),
-                "uuid": 0
-            };
+              "username": usernameAdd.val(),
+              "email": emailAdd.val(),
+              "emailVisibility": true,
+              "password": passwordAdd.val(),
+              "passwordConfirm": passwordConfirm.val(),
+              "name": name.val(),
+              "uid": uid_card,
+              "divisi": "temp",
+              "jabatan": "temp",
+              "level": "temp"
+          };
   
             const record = await pb.collection('users').create(data);
-  
-            console.log(record);
   
             if(record){
               alert('Data Berhasil tersimpan');
@@ -169,7 +173,6 @@
     }
 
     async function getDetail($id){
-      console.log($id);
       const record = await pb.collection('users').getOne($id, {});
       
       if(record){
